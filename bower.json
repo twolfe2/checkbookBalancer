@@ -1,0 +1,20 @@
+{
+  "name": "simplereddit",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Cade Nichols <cade@cadenichols.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/CodingHouseFI/simplereddit",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
