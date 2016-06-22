@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+  <script src="/main.js"></script>
+
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app='myApp' ng-controller='mainCtrl'>
+  <div class="container">
+    <h1 class="text-center">Contact List</h1>
+
+    <input type="number" ng-model='money'>
+
+    <p>Money: {{money | currency}}</p>
+  
+
+    <form ng-submit='addContact()'>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" placeholder="Name" ng-model='newContact.name' required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Email" ng-model='newContact.email' required>
+      </div>
+      <div class="form-group">
+        <label>Phone:</label>
+        <input type="text" class="form-control" placeholder="Phone" ng-model='newContact.phone' required>
+
+        <pre>{{newContact | json}}</pre>
+       
+      </div>
+      <button class="btn btn-default">Submit</button>
+</form>
+  
+  <ng-pluralize count="contacts.length"
+              when="{'0': 'You have no contacts.',
+                     '1': 'You have 1 contact.',
+                     'other': 'You have {} contacts.'}">
+  </ng-pluralize>
+
+  <table class="table" ng-show='contacts.length > 0'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='contact in contacts track by $index'>
+      <td>{{contact.name}}</td>
+      <td>{{contact.email}}</td>
+      <td>{{contact.phone}}</td>
+      <td><button class="btn btn-danger btn-xs" ng-click='deleteContact($index)'>X</button></td>
+
+    </tr>
+      
+    </tbody>
+  </table>
+
+  </div>
+  
+  
+</body>
+</html>

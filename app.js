@@ -14,13 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
-app.use('/posts', require('./routes/posts'));
+// app.use('/posts', require('./routes/posts'));
 
 app.get('/', (req, res) => {
 
-  res.render('index');
+  res.render('index',{name:'Thomas'});
 
 });
 

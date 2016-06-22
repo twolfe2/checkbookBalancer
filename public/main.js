@@ -1,29 +1,25 @@
 'use strict';
 
-$(document).ready(init);
+let app = angular.module('myApp', []);
 
-function init() {
-  $('.newPostForm').submit(createPost);
-}
 
-function createPost(event) {
-  event.preventDefault();
+app.controller('mainCtrl', function($scope, $interval) {
 
-  let text = $('.text').val();
 
-  $.post('/posts', {text: text})
-    .done(post => {
-      let $post = postElement(post);
-      $('ul').append($post);
-    })
-    .fail(err => {
-      console.log('err:', err);
-    })
-}
+  $scope.contacts = [{name:'thomas', email: 'test@emal.com', phone:'32178912'}];
 
-function postElement(post) {
-  let $li = $('<li>').data('id', post.id);
-  let time = moment(post.createdAt).format('LLL');
-  $li.text(`${time} - ${post.text}`);
-  return $li;
-}
+  $scope.addContact = () => {
+
+    let newContact = angular.copy($scope.newContact);
+    $scope.contacts.push(newContact);
+    $scope.newContact = '';
+
+
+  };
+
+  $scope.deleteContact = ($index) => {
+    $scope.contacts.splice($index,1);
+
+  }
+
+});
