@@ -10,6 +10,10 @@
     color: red;
 }
 
+.green {
+  color: green;
+}
+
 .has-error {
     color: red;
     background-color: yellow;
@@ -17,4 +21,14 @@
 
 .orange {
     color: orange;
+}
+
+.radios {
+  padding-right: 10px;
+}
+.sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
 }
