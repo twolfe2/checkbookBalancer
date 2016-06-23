@@ -8,19 +8,25 @@ app.controller('mainCtrl', function($scope, $interval,$localStorage, $sessionSto
   $scope.total = 0;
   $scope.propertyName=null;
   $scope.reverse = true;
-  // $scope.$storage = $localStorage;
+  $scope.$storage = $localStorage;
+
 
   $scope.sortBy = (propertyName) => {
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   }
 
-  $scope.trans = [{description:'buy car', date:'2018-05-31T07:00:00.000Z', amount: -5000, type:'debit'}];
+
+    
+  $scope.trans = $scope.$storage.trans || [];
+  $scope.$storage.trans = $scope.trans;
+  //$scope.$storage.trans = $scope.trans;
 
   $scope.addTrans = () => {
-
+    console.log($scope.newTrans.type);
     if($scope.newTrans.type === 'debit') {
-      $scope.newTrans.type = -$scope.newTrans.type;
+
+      $scope.newTrans.amount = -$scope.newTrans.amount;
     }    
     $scope.trans.push($scope.newTrans);
     $scope.newTrans = '';
